@@ -55,6 +55,7 @@ Follow these steps to easily control your kodi using simple voice commands with 
 ### **Scan library:**
 "Hey Google, kodi scan library" --> Will start a full library scan
 
+
 ### **Navigate kodi:**
 **Navigate up:** "Hey Google, kodi navigate up 3" --> Will navigate up the requested amount  
 **Navigate Down:** "Hey Google, kodi navigate down 3" --> Will navigate down the requested amount  
