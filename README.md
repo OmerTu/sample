@@ -22,20 +22,21 @@ Follow these steps to easily control your kodi using simple voice commands with 
 "Hey Google, kodi play a random movie of the year 2010" --> will play a random movie of the year 2010.  
 "Hey Google, kodi play a random horror movie of the year 2010" --> will play a random movie of the genre "Horror" and of the year 2010.  
 
-### **Search and play a youtube video:**
-"Hey Google youtube [youtube title]" --> will search a youtube video, and play the first video.
-
-### **Play the next unwatched episode:**
+### **Play a tv show:**
+**Play the next unwatched episode:**
 "Hey Google, kodi play tv show [tv show name]" --> will search for the given tv show and play the next unwatched episode.
 
-### **Play a specific episode:**
+**Play a specific episode:**
 "Hey Google, kodi play [tv show name] season 3 episode 1" --> will search for the given tv show and play season 3 episode 1.
 
-### **Play a random episode for a tv show:**
+**Play a random episode for a tv show:**
 "Hey Google, kodi shuffle [tv show name]" --> will search for the given tv show and play a random episode.
 
-### **Play the most recently added tv show:**
+**Play the most recently added tv show:**
 "Hey Google, kodi play new episode" --> will play the most recently added episode to the kodi library.
+
+### **Search and play a youtube video:**
+"Hey Google youtube [youtube title]" --> will search a youtube video, and play the first video.
 
 ### **Pause / Resume kodi:**
 "Hey Google, pause kodi"
