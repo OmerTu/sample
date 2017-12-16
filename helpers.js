@@ -413,14 +413,6 @@ const kodiSeek = (Kodi, seekValue) => {
     ]);
 };
 
-const getRequestedNumberOrOne = (request) => {
-    var requestedNumber = 1;
-    if (request.query && request.query.q && !isNaN(request.query.q.trim())) {
-        requestedNumber = parseInt(request.query.q.trim());
-    }
-    return requestedNumber;
-};
-
 const kodiExecuteMultipleTimes = (action, times) => {
 
     let executions = [...Array(times)].map(() => action());
@@ -449,27 +441,28 @@ exports.kodiPlayPause = (request, response) => { // eslint-disable-line no-unuse
 exports.kodiNavDown = (request, response) => { // eslint-disable-line no-unused-vars
     console.log('Navigate down request received');
     let Kodi = request.kodi;
-    const times = getRequestedNumberOrOne(request);
+    const times = request.query.q.trim();
 
-    return kodiExecuteMultipleTimes(Kodi.Input.Down, times);
+    return kodiExecuteMultipleTimes(Kodi.Input.Down, parseInt(times));
 };
 
 // Navigation Up
 exports.kodiNavUp = (request, response) => { // eslint-disable-line no-unused-vars
     console.log('Navigate up request received');
     let Kodi = request.kodi;
-    const times = getRequestedNumberOrOne(request);
+    const times = request.query.q.trim();
 
-    return kodiExecuteMultipleTimes(Kodi.Input.Up, times);
+    return kodiExecuteMultipleTimes(Kodi.Input.Up, parseInt(times));
 };
 
 // Navigation Left
 exports.kodiNavLeft = (request, response) => { // eslint-disable-line no-unused-vars
     console.log('Navigate left request received');
     let Kodi = request.kodi;
-    const times = getRequestedNumberOrOne(request);
 
-    return kodiExecuteMultipleTimes(Kodi.Input.Left, times);
+    const times = request.query.q.trim();
+
+    return kodiExecuteMultipleTimes(Kodi.Input.Left, parseInt(times));
 
 };
 
@@ -477,18 +470,18 @@ exports.kodiNavLeft = (request, response) => { // eslint-disable-line no-unused-
 exports.kodiNavRight = (request, response) => { // eslint-disable-line no-unused-vars
     console.log('Navigate right request received');
     let Kodi = request.kodi;
-    const times = getRequestedNumberOrOne(request);
+    const times = request.query.q.trim();
 
-    return kodiExecuteMultipleTimes(Kodi.Input.Right, times);
+    return kodiExecuteMultipleTimes(Kodi.Input.Right, parseInt(times));
 };
 
 // Navigation Back
 exports.kodiNavBack = (request, response) => { // eslint-disable-line no-unused-vars
     console.log('Navigate back request received');
     let Kodi = request.kodi;
-    const times = getRequestedNumberOrOne(request);
+    const times = request.query.q.trim();
 
-    return kodiExecuteMultipleTimes(Kodi.Input.Back, times);
+    return kodiExecuteMultipleTimes(Kodi.Input.Back, parseInt(times));
 };
 
 // Navigation Select
@@ -598,7 +591,7 @@ exports.kodiSeekForwardMinutes = (request, response) => { // eslint-disable-line
     console.log('Seek x minutes forwards request received');
     let Kodi = request.kodi;
 
-    const seekForwardminutes = getRequestedNumberOrOne(request);
+    const seekForwardminutes = request.query.q.trim();
 
     return kodiSeek(Kodi, {
         seconds: parseInt(seekForwardminutes * 60)
@@ -610,7 +603,7 @@ exports.kodiSeekBackwardMinutes = (request, response) => { // eslint-disable-lin
     console.log('Seek x minutes backward request received');
     let Kodi = request.kodi;
 
-    const seekbackwardMinutes = getRequestedNumberOrOne(request);
+    const seekbackwardMinutes = request.query.q.trim();
 
     return kodiSeek(Kodi, {
         seconds: parseInt(-seekbackwardMinutes * 60)
