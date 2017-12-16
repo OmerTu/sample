@@ -21,7 +21,7 @@ const fuzzySearchOptions = {
 const tryActivateTv = (request, response) => {
     if (process.env.ACTIVATE_TV != null && process.env.ACTIVATE_TV === 'true') {
         console.log('Activating TV first..');
-        return kodiActivateTv(request, response);
+        return this.kodiActivateTv(request, response);
     }
 
     return Promise.resolve('tv already active');
@@ -200,6 +200,37 @@ const kodiPlayNextUnwatchedEpisode = (request, response, RequestParams) => {
             let paramPlayerOpen = {
                 item: {
                     episodeid: episdoeToPlay.episodeid
+                }
+            };
+
+            return Kodi.Player.Open(paramPlayerOpen); // eslint-disable-line new-cap
+        });
+};
+
+const kodiPlayMostRecentlyAddedEpisode = (request, response) => {
+    // Build filter to get only the most recently added episode
+    let param = {
+        properties: ['playcount', 'showtitle', 'season', 'episode'],
+        limits: {
+            start: 0,
+            end: 1
+        }
+    };
+    let Kodi = request.kodi;
+
+    return Kodi.VideoLibrary.GetRecentlyAddedEpisodes(param) // eslint-disable-line new-cap
+        .then((episodeResult) => {
+            console.log(episodeResult);
+            if (!(episodeResult && episodeResult.result && episodeResult.result.episodes && episodeResult.result.episodes.length > 0)) {
+                throw new Error('no recently added episodes');
+            }
+
+            let episodeToPlay = episodeResult.result.episodes[0];
+
+            console.log(`Playing season ${episodeToPlay.season} episode ${episodeToPlay.episode} (ID: ${episodeToPlay.episodeid})`);
+            let paramPlayerOpen = {
+                item: {
+                    episodeid: episodeToPlay.episodeid
                 }
             };
 
@@ -757,6 +788,13 @@ exports.kodiPlayEpisodeHandler = (request, response) => { // eslint-disable-line
             data.episodeNum = param.episodeNum;
             return kodiPlaySpecificEpisode(request, response, data);
         });
+};
+
+exports.kodiPlayRecentEpisodeHandler = (request, response) => { // eslint-disable-line no-unused-vars
+    tryActivateTv(request, response);
+
+    console.log(`Play most recently added episode request received`);
+    return kodiPlayMostRecentlyAddedEpisode(request, response);
 };
 
 exports.kodiShuffleEpisodeHandler = (request, response) => { // eslint-disable-line no-unused-vars
