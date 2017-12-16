@@ -58,10 +58,10 @@ Follow these steps to easily control your kodi using simple voice commands with 
 
 ### **Navigate kodi:**
 **Navigate up:** "Hey Google, kodi navigate up [3]" --> Will navigate up the requested amount or just once if no number was specified  
-**Navigate Down:** "Hey Google, kodi navigate down [3]" --> same as above for navigating down
+**Navigate Down:** "Hey Google, kodi navigate down [3]" --> same as above for navigating down  
 **Navigate Left:** "Hey Google, kodi navigate left [3]" --> same as above for navigating left  
 **Navigate Right:** "Hey Google, kodi navigate right [3]" --> same as above for navigating right  
-**Navigate Back:** "Hey Google, kodi go back [3]" --> Will navigate back requested amount or just once if no number was specified  
+**Navigate Back:** "Hey Google, kodi go back [3]" --> Will navigate back the requested amount or just once if no number was specified  
 **Navigate Select:** Hey Google, kodi Select" --> Will select the hightlighted item  
 **Navigate Context Menu:** "Hey Google, kodi open context menu" --> Will open the context menu for the selected item  
 **Navigate Go Home:** "Hey Google, kodi go home" --> Will open the main menu page  
